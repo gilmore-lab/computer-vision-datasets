@@ -1,0 +1,104 @@
+---
+title: "tools-and-data"
+author: "Rick O. Gilmore"
+date: "`r Sys.time()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    code_folding: hide
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Purposes
+
+1. Summarize open-source dataset resources in computer vision, emphasizing video
+
+# Datasets
+
+## Lists of links
+
+There are several sites with links to multiple computer vision datasets:
+
+- [CVonline](http://homepages.inf.ed.ac.uk/rbf/CVonline/Imagedbase.htm).
+- [Yet Another Computer Vision Index To Datasets (YACVID)](http://riemenschneider.hayko.at/vision/dataset/index.php)
+
+## Videos
+
+### Lists of links
+
+- [YACVID videos](http://yacvid.hayko.at/index.php?filter=+video)
+- [Comparison of labeled video datasets for action recognition](https://www.cs.ubc.ca/~murphyk/videodata.html), last updated in 2014
+
+### Scene modeling/object segmentation
+
+- [Scene Background Modeling from RGB-D (SGM-RGBD)](http://rgbd2017.na.icar.cnr.it/SBM-RGBDdataset.html)
+- [DAVIS: Densely Annotated VIdeo Segmentation](https://davischallenge.org/)
+- [Video Segmentation Benchmark (VSB100)](https://lmb.informatik.uni-freiburg.de/resources/datasets/vsb.en.html)
+
+### Pose estimation/action recognition/human interaction
+
+- [Atomic Visual Actions (AVA)](https://research.google.com/ava/) from Google Research
+- [Cornell Activity Datasets: CAD-60 & CAD-120](http://pr.cs.cornell.edu/humanactivities/data.php)
+- [Charades and Charades-Ego Datasets](https://allenai.org/plato/charades/) from the Allen Institute for AI
+- [Human3.6M](http://vision.imar.ro/human3.6m/description.php)
+- [20BN-SOMETHING-SOMETHING](https://20bn.com/datasets/something-something)
+- [ShakeFive2](http://www2.projects.science.uu.nl/shakefive/)
+- [Multi-Camera Action Dataset (MCAD)](http://mmas.comp.nus.edu.sg/MCAD/MCAD.html)
+- [Kindergarten Video Surveillance ](https://drive.google.com/file/d/0B8y4Wch2O7L6MFJ1c0wtRmNpb1U/edit?usp=sharing)
+
+### Event recognition/summaries
+
+- [Moments in Time Dataset](http://moments.csail.mit.edu/)
+- [Creating Summaries from User Videos (SumMe)](https://gyglim.github.io/me/vsum/index.html)
+
+### First-person (head-mounted cameras)
+
+- [EPIC kitchens](https://epic-kitchens.github.io/2018)
+- [All I have Seen (AIHS)](http://research.microsoft.com/en-us/um/people/jojic/aihs/), low temporal resolution 1 frame/20s image streams
+
+## Image/photo
+
+### Places
+
+- [Places](http://places2.csail.mit.edu/)
+
+# Entities
+
+## Text Retrieval Conference ([TREC](https://trec.nist.gov/)) Video Retrieval Evaluation: [TRECVID](https://trecvid.nist.gov/)
+
+TRECVID data sets are available here: <https://trecvid.nist.gov/trecvid.data.html>
+
+## The Linguistic Data Consortium (LDC)
+
+LDC engaged in a project called [Heterogeneous Audio Visual Internet Collection (HAVIC)](https://www.ldc.upenn.edu/collaborations/past-projects/havic) as part of TRECVID 2012.
+
+LDC also has a Video Annotation for Speech Technologies (VAST) project. 
+Here is a [paper](https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/lrec2018-vast.pdf) describing the project.
+A VScout browser interface for viewing and annotating web video was developed for this project.
+VAST contains 2,900 hours of video.
+
+### Licensing
+
+LDC data licensing terms are here: <https://www.ldc.upenn.edu/data-management/using/licensing>.
+These are based on [membership agreements](https://www.ldc.upenn.edu/members/agreements) that are distinct for not-for-profit, for-profit, and [government entities](https://catalog.ldc.upenn.edu/license/ldc-government-membership.pdf).
+
+[Not-for-profit memberships](https://catalog.ldc.upenn.edu/license/ldc-not-for-profit-membership.pdf) are \$2,400/year. Subscription memberships (automatically receive two copies on media of all datasets released in the membership year) are \$3,850.
+[For-profit memberships](https://catalog.ldc.upenn.edu/license/ldc-for-profit-membership.pdf) are \$24,000 and $27,500/year.
+[Government entities](https://catalog.ldc.upenn.edu/license/ldc-government-membership.pdf) are charged 2,400/year.
+
+There is also an [agreement](https://catalog.ldc.upenn.edu/license/ldc-non-members-agreement.pdf) for non-members.
+It appears that many of the datasets are governed by [corpus-specific licenses](https://www.ldc.upenn.edu/data-management/using-data/user-agreements#overlay-context=language-resources/data/obtaining).
+Here is an [example](https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/trad-chinese-french-parallel-text-bn-nm-user-agreement.pdf) of a non-member user license agreement.
+
+### Administration
+
+LDC is a big operation with [~40 staff](https://www.ldc.upenn.edu/about/staff). 
+It began with DARPA and NSF funding in 1992.
+

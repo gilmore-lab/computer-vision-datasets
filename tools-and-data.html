@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Rick O. Gilmore" />
+
+
+<title>tools-and-data</title>
+
+<script src="tools-and-data_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="tools-and-data_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="tools-and-data_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="tools-and-data_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="tools-and-data_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="tools-and-data_files/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="tools-and-data_files/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="tools-and-data_files/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="tools-and-data_files/navigation-1.1/tabsets.js"></script>
+<script src="tools-and-data_files/navigation-1.1/codefolding.js"></script>
+<link href="tools-and-data_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="tools-and-data_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">tools-and-data</h1>
+<h4 class="author"><em>Rick O. Gilmore</em></h4>
+<h4 class="date"><em>2019-03-15 14:49:30</em></h4>
+
+</div>
+
+
+<div id="purposes" class="section level1">
+<h1><span class="header-section-number">1</span> Purposes</h1>
+<ol style="list-style-type: decimal">
+<li>Summarize open-source dataset resources in computer vision, emphasizing video</li>
+</ol>
+</div>
+<div id="datasets" class="section level1">
+<h1><span class="header-section-number">2</span> Datasets</h1>
+<div id="lists-of-links" class="section level2">
+<h2><span class="header-section-number">2.1</span> Lists of links</h2>
+<p>There are several sites with links to multiple computer vision datasets:</p>
+<ul>
+<li><a href="http://homepages.inf.ed.ac.uk/rbf/CVonline/Imagedbase.htm">CVonline</a>.</li>
+<li><a href="http://riemenschneider.hayko.at/vision/dataset/index.php">Yet Another Computer Vision Index To Datasets (YACVID)</a></li>
+</ul>
+</div>
+<div id="videos" class="section level2">
+<h2><span class="header-section-number">2.2</span> Videos</h2>
+<div id="lists-of-links-1" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Lists of links</h3>
+<ul>
+<li><a href="http://yacvid.hayko.at/index.php?filter=+video">YACVID videos</a></li>
+<li><a href="https://www.cs.ubc.ca/~murphyk/videodata.html">Comparison of labeled video datasets for action recognition</a>, last updated in 2014</li>
+</ul>
+</div>
+<div id="scene-modelingobject-segmentation" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Scene modeling/object segmentation</h3>
+<ul>
+<li><a href="http://rgbd2017.na.icar.cnr.it/SBM-RGBDdataset.html">Scene Background Modeling from RGB-D (SGM-RGBD)</a></li>
+<li><a href="https://davischallenge.org/">DAVIS: Densely Annotated VIdeo Segmentation</a></li>
+<li><a href="https://lmb.informatik.uni-freiburg.de/resources/datasets/vsb.en.html">Video Segmentation Benchmark (VSB100)</a></li>
+</ul>
+</div>
+<div id="pose-estimationaction-recognitionhuman-interaction" class="section level3">
+<h3><span class="header-section-number">2.2.3</span> Pose estimation/action recognition/human interaction</h3>
+<ul>
+<li><a href="https://research.google.com/ava/">Atomic Visual Actions (AVA)</a> from Google Research</li>
+<li><a href="http://pr.cs.cornell.edu/humanactivities/data.php">Cornell Activity Datasets: CAD-60 &amp; CAD-120</a></li>
+<li><a href="https://allenai.org/plato/charades/">Charades and Charades-Ego Datasets</a> from the Allen Institute for AI</li>
+<li><a href="http://vision.imar.ro/human3.6m/description.php">Human3.6M</a></li>
+<li><a href="https://20bn.com/datasets/something-something">20BN-SOMETHING-SOMETHING</a></li>
+<li><a href="http://www2.projects.science.uu.nl/shakefive/">ShakeFive2</a></li>
+<li><a href="http://mmas.comp.nus.edu.sg/MCAD/MCAD.html">Multi-Camera Action Dataset (MCAD)</a></li>
+<li><a href="https://drive.google.com/file/d/0B8y4Wch2O7L6MFJ1c0wtRmNpb1U/edit?usp=sharing">Kindergarten Video Surveillance</a></li>
+</ul>
+</div>
+<div id="event-recognitionsummaries" class="section level3">
+<h3><span class="header-section-number">2.2.4</span> Event recognition/summaries</h3>
+<ul>
+<li><a href="http://moments.csail.mit.edu/">Moments in Time Dataset</a></li>
+<li><a href="https://gyglim.github.io/me/vsum/index.html">Creating Summaries from User Videos (SumMe)</a></li>
+</ul>
+</div>
+<div id="first-person-head-mounted-cameras" class="section level3">
+<h3><span class="header-section-number">2.2.5</span> First-person (head-mounted cameras)</h3>
+<ul>
+<li><a href="https://epic-kitchens.github.io/2018">EPIC kitchens</a></li>
+<li><a href="http://research.microsoft.com/en-us/um/people/jojic/aihs/">All I have Seen (AIHS)</a>, low temporal resolution 1 frame/20s image streams</li>
+</ul>
+</div>
+</div>
+<div id="imagephoto" class="section level2">
+<h2><span class="header-section-number">2.3</span> Image/photo</h2>
+<div id="places" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Places</h3>
+<ul>
+<li><a href="http://places2.csail.mit.edu/">Places</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="entities" class="section level1">
+<h1><span class="header-section-number">3</span> Entities</h1>
+<div id="text-retrieval-conference-trec-video-retrieval-evaluation-trecvid" class="section level2">
+<h2><span class="header-section-number">3.1</span> Text Retrieval Conference (<a href="https://trec.nist.gov/">TREC</a>) Video Retrieval Evaluation: <a href="https://trecvid.nist.gov/">TRECVID</a></h2>
+<p>TRECVID data sets are available here: <a href="https://trecvid.nist.gov/trecvid.data.html" class="uri">https://trecvid.nist.gov/trecvid.data.html</a></p>
+</div>
+<div id="the-linguistic-data-consortium-ldc" class="section level2">
+<h2><span class="header-section-number">3.2</span> The Linguistic Data Consortium (LDC)</h2>
+<p>LDC engaged in a project called <a href="https://www.ldc.upenn.edu/collaborations/past-projects/havic">Heterogeneous Audio Visual Internet Collection (HAVIC)</a> as part of TRECVID 2012.</p>
+<p>LDC also has a Video Annotation for Speech Technologies (VAST) project. Here is a <a href="https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/lrec2018-vast.pdf">paper</a> describing the project. A VScout browser interface for viewing and annotating web video was developed for this project. VAST contains 2,900 hours of video.</p>
+<div id="licensing" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Licensing</h3>
+<p>LDC data licensing terms are here: <a href="https://www.ldc.upenn.edu/data-management/using/licensing" class="uri">https://www.ldc.upenn.edu/data-management/using/licensing</a>. These are based on <a href="https://www.ldc.upenn.edu/members/agreements">membership agreements</a> that are distinct for not-for-profit, for-profit, and <a href="https://catalog.ldc.upenn.edu/license/ldc-government-membership.pdf">government entities</a>.</p>
+<p><a href="https://catalog.ldc.upenn.edu/license/ldc-not-for-profit-membership.pdf">Not-for-profit memberships</a> are $2,400/year. Subscription memberships (automatically receive two copies on media of all datasets released in the membership year) are $3,850. <a href="https://catalog.ldc.upenn.edu/license/ldc-for-profit-membership.pdf">For-profit memberships</a> are $24,000 and $27,500/year. <a href="https://catalog.ldc.upenn.edu/license/ldc-government-membership.pdf">Government entities</a> are charged 2,400/year.</p>
+<p>There is also an <a href="https://catalog.ldc.upenn.edu/license/ldc-non-members-agreement.pdf">agreement</a> for non-members. It appears that many of the datasets are governed by <a href="https://www.ldc.upenn.edu/data-management/using-data/user-agreements#overlay-context=language-resources/data/obtaining">corpus-specific licenses</a>. Here is an <a href="https://www.ldc.upenn.edu/sites/www.ldc.upenn.edu/files/trad-chinese-french-parallel-text-bn-nm-user-agreement.pdf">example</a> of a non-member user license agreement.</p>
+</div>
+<div id="administration" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Administration</h3>
+<p>LDC is a big operation with <a href="https://www.ldc.upenn.edu/about/staff">~40 staff</a>. It began with DARPA and NSF funding in 1992.</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
